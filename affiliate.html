@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Shopping Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #14b8a6;
+            --accent-color: #f59e0b;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(20, 184, 166, 0.05));
+            padding: 4rem 0;
+        }
+        
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .deal-timer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        
+        .feature-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2;
+        }
+        
+        .wishlist-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+            background: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .category-pill {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .category-pill:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .store-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        
+        .price-comparison {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+        
+        .coupon-card {
+            border: 2px dashed var(--primary-color);
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SmartShopHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Price Alerts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cashback</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 mb-3">Smart Shopping Starts Here</h1>
+            <p class="lead mb-4">Compare prices, earn cashback, and never miss a deal</p>
+            
+            <!-- Category Pills -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+                <button class="btn btn-primary category-pill active">All Deals</button>
+                <button class="btn btn-light category-pill">Electronics</button>
+                <button class="btn btn-light category-pill">Fashion</button>
+                <button class="btn btn-light category-pill">Home</button>
+                <button class="btn btn-light category-pill">Beauty</button>
+            </div>
+            
+            <!-- Search and Filters -->
+            <div class="row justify-content-center g-2">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Search products...">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select">
+                        <option value="">All Categories</option>
+                        <option>Electronics</option>
+                        <option>Fashion</option>
+                        <option>Home</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Deals Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">⚡ Flash Deals</h2>
+            <div class="row g-4">
+                <!-- Product Card -->
+                <div class="col-md-4">
+                    <div class="card product-card h-100">
+                        <span class="badge bg-warning feature-badge">
+                            <i class="fas fa-fire"></i> Trending
+                        </span>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Product">
+                        <div class="card-body">
+                            <div class="deal-timer mb-3">
+                                <i class="fas fa-clock"></i>
+                                <span>Ends in: 05:23:45</span>
+                            </div>
+                            <h5 class="card-title">Premium Wireless Headphones</h5>
+                            
+                            <!-- Price Comparison -->
+                            <div class="price-comparison mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/api/placeholder/24/24" alt="Amazon" class="store-logo me-2">
+                                        <span>Amazon</span>
+                                    </div>
+                                    <span class="fw-bold">$89.99</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/api/placeholder/24/24" alt="Walmart" class="store-logo me-2">
+                                        <span>Walmart</span>
+                                    </div>
+                                    <span class="fw-bold">$99.99</span>
+                                </div>
+                            </div>
+                            
+                            <span class="badge bg-success mb-3">
+                                <i class="fas fa-tags"></i> 5% Cashback
+                            </span>
+                            <a href="#" class="btn btn-primary w-100">View Deal</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- More product cards can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Price History Chart -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Price History</h2>
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deal Alert Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center mb-4">Never Miss a Deal</h2>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Price Target</label>
+                                    <input type="number" class="form-control" placeholder="Set your target price">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Set Alert</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <h5>About SmartShopHub</h5>
+                    <p class="text-muted">We help millions of shoppers make smart buying decisions through price comparisons, deals, and cashback rewards.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Popular Categories</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Electronics</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Fashion</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Beauty</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Member Benefits</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Cashback Rewards</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Price Alerts</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Deal Notifications</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Price History</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Download Our App</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-light"><i class="fab fa-apple me-2"></i>App Store</a>
+                        <a href="#" class="btn btn-outline-light"><i class="fab fa-google-play me-2"></i>Google Play</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 SmartShopHub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="text-muted"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Required Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize price history chart
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Price History',
+                    data: [99.99, 89.99, 94.99, 84.99, 89.99, 79.99],
+                    borderColor: '#6366f1',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '6-Month Price History'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
